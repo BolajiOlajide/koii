@@ -19,7 +19,7 @@
     },
     "scripts": {
         "start:example": "node examples",
-        "test": "jest",
+        "test": "./tests/run_tests.sh",
         "publish": "npm publish"
     },
     "jest": {
