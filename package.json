@@ -1,5 +1,5 @@
 {
-    "name": "koi",
+    "name": "koii",
     "version": "1.0.0",
     "description": "Simple middleware to display routes in an express application",
     "main": "lib/index.js",
