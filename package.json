@@ -1,17 +1,40 @@
 {
-  "name": "koi",
-  "version": "1.0.0",
-  "main": "lib/index.js",
-  "repository": "git@github.com:BolajiOlajide/koi.git",
-  "author": "BolajiOlajide",
-  "license": "MIT",
-  "devDependencies": {
-    "eslint": "^5.11.1",
-    "eslint-config-proton": "^1.0.5"
-},
-"dependencies": {
-    "chalk": "^2.4.1",
-    "easy-table": "^1.1.1",
-    "express": "^4.16.4"
-  }
+    "name": "koi",
+    "version": "1.0.0",
+    "description": "Simple middleware to display routes in an express application",
+    "main": "lib/index.js",
+    "repository": "git@github.com:BolajiOlajide/koi.git",
+    "author": "BolajiOlajide",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "^5.11.1",
+        "coveralls": "^3.0.2",
+        "eslint-config-proton": "^1.0.5",
+        "jest": "^23.6.0"
+    },
+    "dependencies": {
+        "chalk": "^2.4.1",
+        "easy-table": "^1.1.1",
+        "express": "^4.16.4"
+    },
+    "scripts": {
+        "start:example": "node examples",
+        "test": "jest",
+        "publish": "npm publish"
+    },
+    "jest": {
+        "collectCoverage": true,
+        "collectCoverageFrom": [
+            "**/lib/**/*.{js}"
+        ],
+        "verbose": true,
+        "notify": true
+    },
+    "keywords": [
+        "koi",
+        "express",
+        "routes",
+        "startup",
+        "blipp"
+    ]
 }

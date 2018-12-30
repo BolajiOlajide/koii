@@ -17,3 +17,5 @@
 ```console
 npm install koi
 ```
+
+Inspired by [@danielb2](https://github.com/danielb2)'s [Blipp plugin](https://www.npmjs.com/package/blipp) for HapiJS
