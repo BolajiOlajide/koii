@@ -1,8 +1,17 @@
 {
   "name": "koi",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "lib/index.js",
   "repository": "git@github.com:BolajiOlajide/koi.git",
   "author": "BolajiOlajide",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.11.1",
+    "eslint-config-proton": "^1.0.5"
+},
+"dependencies": {
+    "chalk": "^2.4.1",
+    "easy-table": "^1.1.1",
+    "express": "^4.16.4"
+  }
 }

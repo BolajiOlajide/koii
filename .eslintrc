@@ -1,0 +1,6 @@
+{
+  "extends": "proton",
+  "env": {
+    "node": true
+  }
+}
