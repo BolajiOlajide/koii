@@ -1,6 +1,6 @@
 {
     "name": "koii",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Simple middleware to display routes in an express application",
     "main": "lib/index.js",
     "repository": "git@github.com:BolajiOlajide/koi.git",
@@ -32,6 +32,7 @@
     },
     "keywords": [
         "koi",
+        "koii",
         "express",
         "routes",
         "startup",

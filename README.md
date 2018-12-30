@@ -1,4 +1,4 @@
-# KOI
+# KOII
 
 [![star this repo](http://githubbadges.com/star.svg?user=BolajiOlajide&repo=koi&style=flat)](https://github.com/BolajiOlajide/koi)
 [![fork this repo](http://githubbadges.com/fork.svg?user=BolajiOlajide&repo=koi&style=flat)](https://github.com/BolajiOlajide/koi/fork)
@@ -15,7 +15,7 @@
 ## Install
 
 ```console
-npm install koi
+npm install koii
 ```
 
 Inspired by [@danielb2](https://github.com/danielb2)'s [Blipp plugin](https://www.npmjs.com/package/blipp) for HapiJS
