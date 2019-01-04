@@ -1,12 +1,12 @@
 # KOII
 
-[![star this repo](http://githubbadges.com/star.svg?user=BolajiOlajide&repo=koi&style=flat)](https://github.com/BolajiOlajide/koi)
-[![fork this repo](http://githubbadges.com/fork.svg?user=BolajiOlajide&repo=koi&style=flat)](https://github.com/BolajiOlajide/koi/fork)
+[![star this repo](http://githubbadges.com/star.svg?user=BolajiOlajide&repo=koii&style=flat)](https://github.com/BolajiOlajide/koi)
+[![fork this repo](http://githubbadges.com/fork.svg?user=BolajiOlajide&repo=koii&style=flat)](https://github.com/BolajiOlajide/koi/fork)
 [![NPM version](https://badge.fury.io/js/badge-list.svg)](http://badge.fury.io/js/badge-list)
 [![Open Source Love](https://badges.frapsoft.com/os/v1/open-source.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 [![Open Source Love](https://badges.frapsoft.com/os/mit/mit.svg?v=102)](https://github.com/ellerbrock/open-source-badge/)
 
-![Koi is inspired by Jackie and the fish](images/koi.jpg)
+![Koii is inspired by Jackie and the fish](images/koi.jpg)
 
 ## Install
 
