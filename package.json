@@ -4,6 +4,7 @@
     "description": "Simple middleware to display routes in an express application",
     "main": "lib/index.js",
     "repository": "git@github.com:BolajiOlajide/koi.git",
+    "homepage": "https://github.com/BolajiOlajide/koi",
     "author": "BolajiOlajide",
     "license": "MIT",
     "devDependencies": {
