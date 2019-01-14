@@ -2,28 +2,34 @@
 
 const express = require('express');
 const koii = require('../lib');
-
 const app = express();
 const PORT = 3103;
 
-app.get('/', function (req, res) {
-  return res.send({ status: 'success', message: 'Sample express application' });
-});
+const responseHandler = ({ message }) => (req, res) => {
+  if (req.params && req.params.name) {
+    message = `${message}${req.params.name}`
+  }
 
-app.get('/:name', function (req, res) {
-  return res.send({ status: 'success', message: 'Welcome ' + req.params.name });
-});
+  return res.send({
+    status: 'success',
+    message
+  });
+};
 
-app.post('/:name', function (req, res) {
-  return res.send({ status: 'success', message: 'Welcome ' + req.params.name });
-});
+app.get('/', responseHandler({ message: 'Sample express application' }));
+app.get('/names/:name', responseHandler({ message: 'Welcome ' }));
+app.post('/names/:name', responseHandler({ message: 'Welcome ' }));
+app.route('/events')
+  .get(responseHandler({ message: 'Get Events' }))
+  .post(responseHandler({ message: 'Post Events' }))
+  .put(responseHandler({ message: 'Put Events' }));
 
 app.use(koii);
 
-app.listen(PORT, function (err) {
+app.listen(PORT, (err) => {
   if (err) {
-    console.log('error ==>', err.message);
-    return;
+    throw new Error(err.message);
   }
+
   console.log('Application running on port ' + PORT);
 });
