@@ -10,7 +10,7 @@ if ! [ -d "node_modules" ]; then
 fi
 
 # Run unit tests
-NODE_ENV=testing ./node_modules/.bin/jest ./**/*.spec.js
+NODE_ENV=testing ./node_modules/.bin/jest
 
 echo ''
 echo ''
