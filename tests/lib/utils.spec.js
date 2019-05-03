@@ -1,14 +1,14 @@
-const { validate, formatRoutes, getRoutes, style } = require('../../lib/utils');
+const { validate, formatRoutes, getRoutes, style } = require('../../src/utils');
 const fixtures = require('../mock/fixture');
 
 describe('Utils', () => {
   describe('.validate', () => {
     it('throw error if app instance is string', (done) => {
-      const message = 'Cannot detect an express application. Check Koii is within an express application';
+      const msg = 'Cannot detect an express application. Check Koii is within an express application'; // eslint-disable-line
 
       expect(() => {
         validate('');
-      }).toThrow(message);
+      }).toThrow(msg);
       done();
     });
 
@@ -68,12 +68,12 @@ describe('Utils', () => {
   describe('.getRoutes', () => {
     it('return application routes', (done) => {
       const routes = getRoutes(fixtures.routes);
-      const _routes = routes.reduce((routes, route) => {
+      const _routes = routes.reduce((routes, route) => { // eslint-disable-line
         routes[route.method] = route;
         return routes;
       }, {});
 
-      expect(routes).toHaveLength(4)
+      expect(routes).toHaveLength(4);
       for (const { route } of fixtures.routes) {
         if (route) {
           const { stack, path } = route;

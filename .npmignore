@@ -1,3 +1,10 @@
 .editorconfig
 node_modules
 .eslintrc
+CHANGELOG.md
+CONTRIBUTING.md
+CONTRIBUTOR_COVENANT.md
+tests/
+src
+images
+.circleci

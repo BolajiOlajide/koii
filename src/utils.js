@@ -9,8 +9,8 @@ const chalk = require('chalk');
  * [... { method: path }] i.e. [... { 'GET': '/hello' }]
  *
  *
- * @param {Array} routerStack
- * @returns {Array}
+ * @param {Array}   routerStack router stack
+ * @returns {Array}             array of routes
  * @api private
  */
 exports.getRoutes = routerStack => {
@@ -39,15 +39,15 @@ exports.getRoutes = routerStack => {
 /**
  * validate parent application instance
  *
- * @param {Object} app
- * @returns {Boolean}
+ * @param {Object}      app    express application
+ * @returns {Boolean}          boolean to show if app is a valid express app
  * @exception {Object}
  * @api private
  */
 exports.validate = app => {
   if (!app) {
-    const message = 'Cannot detect an express application. Check Koii is within an express application';
-    throw new Error(message);
+    const msg = 'Cannot detect an express application. Check Koii is within an express application';
+    throw new Error(msg);
   } else if (!app._router || !Array.isArray(app._router.stack)) { // eslint-disable-line
     const message = 'Cannot detect routes in the express application.';
     throw new Error(message);
@@ -59,33 +59,29 @@ exports.validate = app => {
 /**
  * format and style application routes.
  *
- * @param {Array} routes
+ * @param {Array} routes    array of routes
  * @returns {String} styled
  * @api private
  */
-exports.formatRoutes = routes => {
-  return Table.print(routes, ({ method, path }, cell) => {
-    for (const [attr, color, title] of [[method, 'green', 'METHOD'], [path, 'white', 'PATH']]) {
-      cell(this.style(title, 'cyan'), this.style(attr, color))
-    }
-  });
-};
+exports.formatRoutes = routes => Table.print(routes, ({ method, path }, cell) => {
+  for (const [attr, color, title] of [[method, 'green', 'METHOD'], [path, 'white', 'PATH']]) {
+    cell(this.style(title, 'cyan'), this.style(attr, color)); // eslint-disable-line
+  }
+});
 
 /**
  * log.
  *
  * @api private
  */
-exports.log = console.log;
+exports.log = console.log; // eslint-disable-line no-console
 
 /**
  * style text with given color.
  *
- * @param {String} text
- * @param {String} color
- * @returns {String}
+ * @param {String} text     text to log
+ * @param {String} color    color to use to log text
+ * @returns {String}        decorated text with color
  * @api private
  */
-exports.style = (text, color) => {
-  return chalk[color](text);
-}
+exports.style = (text, color) => chalk[color](text);
