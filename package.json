@@ -1,6 +1,6 @@
 {
     "name": "koii",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "Simple middleware to display routes in an express application",
     "main": "lib/index.js",
     "repository": "git@github.com:BolajiOlajide/koii.git",
@@ -28,7 +28,7 @@
     "scripts": {
         "start:example": "node examples",
         "test": "./tests/run_tests.sh",
-        "prepublish": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
+        "prepublishOnly": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
         "publish": "npm publish"
     },
     "jest": {

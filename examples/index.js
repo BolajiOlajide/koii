@@ -1,13 +1,14 @@
 'use strict';
 
 const express = require('express');
-const koii = require('../lib');
+const koii = require('../src');
+
 const app = express();
 const PORT = 3103;
 
 const responseHandler = ({ message }) => (req, res) => {
   if (req.params && req.params.name) {
-    message = `${message}${req.params.name}`
+    message = `${message}${req.params.name}`;
   }
 
   return res.send({
@@ -31,5 +32,5 @@ app.listen(PORT, (err) => {
     throw new Error(err.message);
   }
 
-  console.log('Application running on port ' + PORT);
+  console.log('Application running on port ' + PORT); // eslint-disable-line
 });

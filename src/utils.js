@@ -63,11 +63,13 @@ exports.validate = app => {
  * @returns {String} styled
  * @api private
  */
-exports.formatRoutes = routes => Table.print(routes, ({ method, path }, cell) => {
-  for (const [attr, color, title] of [[method, 'green', 'METHOD'], [path, 'white', 'PATH']]) {
-    cell(this.style(title, 'cyan'), this.style(attr, color)); // eslint-disable-line
-  }
-});
+exports.formatRoutes = routes => { // eslint-disable-line
+  return Table.print(routes, ({ method, path }, cell) => {
+    for (const [attr, color, title] of [[method, 'green', 'METHOD'], [path, 'white', 'PATH']]) {
+      cell(this.style(title, 'cyan'), this.style(attr, color)); // eslint-disable-line
+    }
+  });
+};
 
 /**
  * log.
