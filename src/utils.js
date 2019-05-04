@@ -57,6 +57,17 @@ exports.validate = app => {
 };
 
 /**
+ * style text with given color.
+ *
+ * @param {String} text     text to log
+ * @param {String} color    color to use to log text
+ * @returns {String}        decorated text with color
+ * @api private
+ */
+const style = (text, color) => chalk[color](text);
+exports.style = style;
+
+/**
  * format and style application routes.
  *
  * @param {Array} routes    array of routes
@@ -66,7 +77,7 @@ exports.validate = app => {
 exports.formatRoutes = routes => { // eslint-disable-line
   return Table.print(routes, ({ method, path }, cell) => {
     for (const [attr, color, title] of [[method, 'green', 'METHOD'], [path, 'white', 'PATH']]) {
-      cell(this.style(title, 'cyan'), this.style(attr, color)); // eslint-disable-line
+      cell(style(title, 'cyan'), style(attr, color)); // eslint-disable-line
     }
   });
 };
@@ -77,13 +88,3 @@ exports.formatRoutes = routes => { // eslint-disable-line
  * @api private
  */
 exports.log = console.log; // eslint-disable-line no-console
-
-/**
- * style text with given color.
- *
- * @param {String} text     text to log
- * @param {String} color    color to use to log text
- * @returns {String}        decorated text with color
- * @api private
- */
-exports.style = (text, color) => chalk[color](text);
