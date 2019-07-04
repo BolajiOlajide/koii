@@ -21,9 +21,9 @@
         "jest": "^23.6.0"
     },
     "dependencies": {
-        "chalk": "^2.4.1",
+        "chalk": "^2.4.2",
         "easy-table": "^1.1.1",
-        "express": "^4.16.4"
+        "express": "^4.17.1"
     },
     "scripts": {
         "start:example": "node examples",
@@ -48,6 +48,8 @@
         "blipp"
     ],
     "babel": {
-        "presets": ["es2015"]
-      }
+        "presets": [
+            "es2015"
+        ]
+    }
 }
