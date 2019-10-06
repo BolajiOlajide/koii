@@ -1,14 +1,13 @@
 {
     "name": "koii",
-    "version": "1.2.0",
+    "version": "2.0.0",
     "description": "Simple middleware to display routes in an express application",
-    "main": "lib/index.js",
+    "main": "src/index.js",
     "repository": "git@github.com:BolajiOlajide/koii.git",
     "homepage": "https://github.com/BolajiOlajide/koii",
     "author": {
         "name": "Bolaji Olajide",
-        "email": "cooproton@gmail.com",
-        "url": "https://linkr.ee/cooproton"
+        "url": "https://linktr.ee/cooproton"
     },
     "license": "MIT",
     "devDependencies": {
