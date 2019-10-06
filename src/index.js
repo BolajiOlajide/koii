@@ -24,8 +24,11 @@ const displayRoutes = parent => {
     const { settings, _router } = parent;
     const routes = getRoutes(_router.stack);
     const formattedRoutes = formatRoutes(routes);
+    const environmentDetails = 'NODE_ENV=' + settings.env;
 
-    log((style('NODE_ENV=' + settings.env, 'cyan')));
+    log('-'.repeat(environmentDetails.length))
+    log((style(environmentDetails, 'blue')));
+    log('-'.repeat(environmentDetails.length))
     log(formattedRoutes);
   }
 };

@@ -2,6 +2,7 @@
 
 const express = require('express');
 const koii = require('../src');
+const routes = require('./routes')
 
 const app = express();
 const PORT = 3103;
@@ -25,7 +26,12 @@ app.route('/events')
   .post(responseHandler({ message: 'Post Events' }))
   .put(responseHandler({ message: 'Put Events' }));
 
+app.use('/api/v1', routes);
 app.use(koii);
+app.get('/job', (req, res) => {
+  console.log(req.query.skills)
+  return res.status(203).send('jdjs');
+})
 
 app.listen(PORT, (err) => {
   if (err) {

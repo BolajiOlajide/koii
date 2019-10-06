@@ -3,6 +3,39 @@ const chalk = require('chalk');
 
 
 /**
+ * extract route information from stack
+ *
+ * @api private
+ */
+const extractRoutes = ({ method = null }, routes, path) => {
+  if (method) {
+    const httpMethod = method.toUpperCase();
+
+    routes.push({
+      method: httpMethod,
+      path
+    });
+  }
+}
+
+/**
+ * extract route information from stack
+ *
+ * @api private
+ */
+const extractRouterRoutes = ({ route = null }, routes) => {
+  if (method && route) {
+    const httpMethod = method.toUpperCase();
+
+    routes.push({
+      method: httpMethod,
+      path: 'bolaji/'
+    });
+  }
+}
+
+
+/**
  * prepare application routes
  *
  *
@@ -15,21 +48,27 @@ const chalk = require('chalk');
  */
 exports.getRoutes = routerStack => {
   const routes = [];
+  // https://stackoverflow.com/questions/14934452/how-to-get-all-registered-routes-in-express/14934933
 
-  routerStack.forEach(({ route = null }) => {
+  routerStack.forEach((stack) => {
+    const { route = null, name = null, handle = null } = stack;
     if (route) {
       const { stack, path } = route;
+      console.log(stack[0].handle, path, stack.length, ' \n');
 
-      stack.forEach(({ method = null }) => {
-        if (method) {
-          const httpMethod = method.toUpperCase();
+      stack.forEach(_stack => extractRoutes(_stack, routes, path));
+    } else if (name === 'router') {
+      console.log(stack)
+      // console.log('mustafi', handle.stack)
+      // const { route = null } = handle.stack[0];
+      // console.log(route.methods, route.stack);
+      // handle.stack.forEach(_stack => {
+      //   console.log(_stack.route)
+      // })
 
-          routes.push({
-            method: httpMethod,
-            path
-          });
-        }
-      });
+      // generate baseURL
+
+      // get methods
     }
   });
 
