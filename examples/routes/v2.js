@@ -11,7 +11,7 @@ router.route('/users/:id')
           firstName: 'proton',
           lastName: 'nucleons',
         }]
-      });      
+      });
     }
   })
   .head((req, res) => {
@@ -21,7 +21,7 @@ router.route('/users/:id')
           firstName: 'electron',
           lastName: 'nucleons',
         }]
-      });      
+      });
     }
   });
 
