@@ -13,13 +13,13 @@
     "devDependencies": {
         "coveralls": "^3.0.2",
         "eslint": "^5.11.1",
-        "eslint-config-proton": "^1.0.5"
+        "eslint-config-proton": "^1.0.5",
+        "jest": "^24.9.0"
     },
     "dependencies": {
         "chalk": "^2.4.2",
         "easy-table": "^1.1.1",
-        "express": "^4.17.1",
-        "jest": "^24.9.0"
+        "express": "^4.17.1"
     },
     "scripts": {
         "start:example": "node examples",
