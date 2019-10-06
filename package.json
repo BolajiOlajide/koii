@@ -26,7 +26,7 @@
         "express": "^4.17.1"
     },
     "scripts": {
-        "start:example": "node examples",
+        "start:example": "nodemon examples",
         "test": "./tests/run_tests.sh",
         "prepublishOnly": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
         "publish": "npm publish"
