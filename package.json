@@ -2,7 +2,7 @@
     "name": "koii",
     "version": "2.0.0",
     "description": "Simple middleware to display routes in an express application",
-    "main": "src/index.js",
+    "main": "lib/index.js",
     "repository": "git@github.com:BolajiOlajide/koii.git",
     "homepage": "https://github.com/BolajiOlajide/koii",
     "author": {
@@ -11,9 +11,6 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "babel-cli": "^6.26.0",
-        "babel-core": "^6.26.3",
-        "babel-preset-es2015": "^6.24.1",
         "coveralls": "^3.0.2",
         "eslint": "^5.11.1",
         "eslint-config-proton": "^1.0.5",
@@ -27,13 +24,12 @@
     "scripts": {
         "start:example": "node examples",
         "test": "./tests/run_tests.sh",
-        "prepublishOnly": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
         "publish": "npm publish"
     },
     "jest": {
         "collectCoverage": true,
         "collectCoverageFrom": [
-            "**/lib/**/*.{js}"
+            "tests/**/*.{js}"
         ],
         "verbose": true,
         "notify": true
@@ -45,10 +41,5 @@
         "routes",
         "startup",
         "blipp"
-    ],
-    "babel": {
-        "presets": [
-            "es2015"
-        ]
-    }
+    ]
 }
