@@ -23,8 +23,7 @@
         "express": "^4.17.1"
     },
     "scripts": {
-        "start:example": "node examples",
-        "dev:example": "nodemon examples",
+        "start:example": "nodemon examples",
         "test": "./tests/run_tests.sh",
         "publish": "npm publish"
     },
