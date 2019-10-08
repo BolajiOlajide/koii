@@ -34,13 +34,18 @@ exports.getRoutes = routerStack => {
 
     if (stacks.name === 'router') {
       const { handle } = stacks;
-      console.log(stacks);
+      const version = stacks
+        .regexp
+        .toString()
+        .replace(/[fast_car:false\\?i=|$)()/^true]/ig, '');
+
       handle.stack.forEach(({ route }) => {
         route.stack.forEach(({ method }) => {
           const { path } = route;
           const httpMethod = method.toUpperCase();
+          const fullPath = `/${version}${path}`;
 
-          routes.push({ method: httpMethod, path });
+          routes.push({ method: httpMethod, path: fullPath });
         });
       });
     }

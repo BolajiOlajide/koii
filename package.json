@@ -14,7 +14,8 @@
         "coveralls": "^3.0.2",
         "eslint": "^5.11.1",
         "eslint-config-proton": "^1.0.5",
-        "jest": "^24.9.0"
+        "jest": "^24.9.0",
+        "nodemon": "^1.19.3"
     },
     "dependencies": {
         "chalk": "^2.4.2",
@@ -23,6 +24,7 @@
     },
     "scripts": {
         "start:example": "node examples",
+        "dev:example": "nodemon examples",
         "test": "./tests/run_tests.sh",
         "publish": "npm publish"
     },
