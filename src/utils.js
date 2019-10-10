@@ -32,18 +32,46 @@ exports.getRoutes = routerStack => {
       });
     }
 
+    /**
+     *  checking to see if the word api exists, if so,
+     *  it is being removed separetely from the string and 
+     *  also the v1 or v2 is being removed separately.
+     *  Everything is then concatenated into the 'fullUrlPath'
+     *  variable.
+     */    
+
     if (stacks.name === 'router') {
       const { handle } = stacks;
-      const version = stacks
+
+      const strigifiedRegex = stacks
         .regexp
-        .toString()
-        .replace(/[fast_car:false\\?i=|$)()/^true]/ig, '');
+        .toString();      
+
+      const baseurl = strigifiedRegex.search(/api/);
+
+      let version = null;
+      let filteredBaseUrl = null;
+      let fullUrlPath = null;
+      let filteredVersion = null;
+
+      if (baseurl > -1) {
+        version = strigifiedRegex.match('api');
+        filteredBaseUrl = version[0];
+
+        filteredVersion = strigifiedRegex
+          .replace(/[fast_car:false\\?i=|$)()/^trupe]/ig, '');
+
+        fullUrlPath = `/${filteredBaseUrl}/${filteredVersion}`;
+      } else {
+        fullUrlPath = strigifiedRegex
+          .replace(/[fast_car:false\\?i=|$)()/^trpue]/ig, '');
+      }
 
       handle.stack.forEach(({ route }) => {
         route.stack.forEach(({ method }) => {
           const { path } = route;
           const httpMethod = method.toUpperCase();
-          const fullPath = `/${version}${path}`;
+          const fullPath = `${fullUrlPath}${path}`;
 
           routes.push({ method: httpMethod, path: fullPath });
         });
