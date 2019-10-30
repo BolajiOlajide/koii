@@ -40,7 +40,7 @@ exports.getRoutes = routerStack => {
         .toString()
         .replace(/fast_star: false, fast_slash: true/, '')
         .replace(/[?(?=\/|$)/^]/ig, '')
-        .replace(/\\\\i/i, '')
+        .replace(/\\\\i/, '')
         .replace(/\\/g, '/');
 
       handle.stack.forEach(({ route }) => {
