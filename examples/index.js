@@ -27,9 +27,9 @@ app.route('/events')
   .get(responseHandler({ message: 'Get Events' }))
   .post(responseHandler({ message: 'Post Events' }))
   .put(responseHandler({ message: 'Put Events' }));
-app.use('api/v1', v1Router);
-app.use('api/v2', v2Router);
-app.use(stuffRouter);
+
+app.use('/api/v1', v1Router);
+app.use('/api/v2', v2Router);
 
 app.use(koii);
 
