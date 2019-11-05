@@ -5,10 +5,7 @@
     "main": "src/index.js",
     "repository": "git@github.com:BolajiOlajide/koii.git",
     "homepage": "https://github.com/BolajiOlajide/koii",
-    "author": {
-        "name": "Bolaji Olajide",
-        "url": "https://linktr.ee/cooproton"
-    },
+    "author": "Bolaji",
     "license": "MIT",
     "devDependencies": {
         "coveralls": "^3.0.7",
