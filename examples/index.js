@@ -30,6 +30,7 @@ app.route('/events')
 
 app.use('/api/v1', v1Router);
 app.use('/api/v2', v2Router);
+app.use('/test', stuffRouter);
 
 app.use(koii);
 
