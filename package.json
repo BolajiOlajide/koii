@@ -11,11 +11,11 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "coveralls": "^3.0.2",
-        "eslint": "^5.11.1",
+        "coveralls": "^3.0.7",
+        "eslint": "^6.6.0",
         "eslint-config-proton": "^1.0.5",
         "jest": "^24.9.0",
-        "nodemon": "^1.19.3"
+        "nodemon": "^1.19.4"
     },
     "dependencies": {
         "chalk": "^2.4.2",
