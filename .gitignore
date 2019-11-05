@@ -4,4 +4,5 @@ node_modules
 coverage
 npm-debug.log
 lib/
-*.lock
+package-lock.json
+.gitignore

@@ -16,9 +16,9 @@ const chalk = require('chalk');
 exports.getRoutes = routerStack => {
   const routes = [];
 
-  routerStack.forEach(({ route = null }) => {
-    if (route) {
-      const { stack, path } = route;
+  routerStack.forEach((stacks = null) => {
+    if (stacks.route) {
+      const { stack, path } = stacks.route;
 
       stack.forEach(({ method = null }) => {
         if (method) {
@@ -31,8 +31,29 @@ exports.getRoutes = routerStack => {
         }
       });
     }
-  });
 
+    if (stacks.name === 'router') {
+      const { handle } = stacks;
+
+      const strigifiedRegex = stacks
+        .regexp
+        .toString()
+        .replace(/fast_star: false, fast_slash: true/, '')
+        .replace(/[?(?=\/|$)/^]/ig, '')
+        .replace(/\\\\i/, '')
+        .replace(/\\/g, '/');
+
+      handle.stack.forEach(({ route }) => {
+        route.stack.forEach(({ method }) => {
+          const { path } = route;
+          const httpMethod = method.toUpperCase();
+          const fullPath = `${strigifiedRegex}${path}`;
+
+          routes.push({ method: httpMethod, path: fullPath });
+        });
+      });
+    }
+  });
   return routes;
 };
 

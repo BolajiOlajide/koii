@@ -73,7 +73,7 @@ describe('Utils', () => {
         return routes;
       }, {});
 
-      expect(routes).toHaveLength(4);
+      expect(routes).toHaveLength(6);
       for (const { route } of fixtures.routes) {
         if (route) {
           const { stack, path } = route;

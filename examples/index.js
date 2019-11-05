@@ -2,6 +2,9 @@
 
 const express = require('express');
 const koii = require('../src');
+const v1Router = require('./routes/v1');
+const v2Router = require('./routes/v2');
+const stuffRouter = require('./routes/stuff');
 
 const app = express();
 const PORT = 3103;
@@ -24,6 +27,10 @@ app.route('/events')
   .get(responseHandler({ message: 'Get Events' }))
   .post(responseHandler({ message: 'Post Events' }))
   .put(responseHandler({ message: 'Put Events' }));
+
+app.use('/api/v1', v1Router);
+app.use('/api/v2', v2Router);
+app.use('/test', stuffRouter);
 
 app.use(koii);
 
