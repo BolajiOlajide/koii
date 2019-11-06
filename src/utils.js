@@ -2,6 +2,22 @@ const Table = require('easy-table');
 const chalk = require('chalk');
 
 
+
+const strigifiedRegex = regex => regex
+  .toString()
+  .replace(/fast_star: false, fast_slash: true/, '')
+  .replace(/[?(?=\/|$)/^]/ig, '')
+  .replace(/\\\\i/, '')
+  .replace(/\\/g, '/');
+
+const strigifiedRegex2 = regex => regex
+  .toString()
+  .replace(/fast_star: false, fast_slash: true/, '')
+  .replace(/[?(?=\/|$)/^]/ig, '')
+  .replace(/\\\\i/, '')
+  .replace(/\\/g, '/')
+  .replace(/\\\\i/, '');
+
 /**
  * prepare application routes
  *
@@ -33,24 +49,35 @@ exports.getRoutes = routerStack => {
     }
 
     if (stacks.name === 'router') {
-      const { handle } = stacks;
+      const { handle, regexp } = stacks;
 
-      const strigifiedRegex = stacks
-        .regexp
-        .toString()
-        .replace(/fast_star: false, fast_slash: true/, '')
-        .replace(/[?(?=\/|$)/^]/ig, '')
-        .replace(/\\\\i/, '')
-        .replace(/\\/g, '/');
+      const baseRoute = strigifiedRegex(regexp);
 
-      handle.stack.forEach(({ route }) => {
-        route.stack.forEach(({ method }) => {
-          const { path } = route;
-          const httpMethod = method.toUpperCase();
-          const fullPath = `${strigifiedRegex}${path}`;
+      handle.stack.forEach((stack) => {
+        if (stack.route) {
+          stack.route.stack.forEach(({ method }) => {
+            const { path } = stack.route;
+            const httpMethod = method.toUpperCase();
+            const fullPath = `${baseRoute}${path}`;
 
-          routes.push({ method: httpMethod, path: fullPath });
-        });
+            routes.push({ method: httpMethod, path: fullPath });
+          });
+        } else {
+          const innerBaseRoute = strigifiedRegex(stack.regexp);
+          const innerBasePath = `${baseRoute}${innerBaseRoute}`;
+
+          stack.handle.stack.forEach((innerStack) => {
+            const { path } = innerStack.route;
+
+            // 😂 - innerInnerStack
+            innerStack.route.stack.forEach((innerInnerStack) => {
+              const fullPath = `${innerBasePath}${path}`;
+              const httpMethod = innerInnerStack.method.toUpperCase();
+
+              routes.push({ method: httpMethod, path: fullPath });
+            })
+          });
+        }
       });
     }
   });
