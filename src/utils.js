@@ -68,14 +68,23 @@ exports.getRoutes = routerStack => {
 
           stack.handle.stack.forEach((innerStack) => {
             const { path } = innerStack.route;
+            const tempRoutes = [];
 
             // 😂 - innerInnerStack
             innerStack.route.stack.forEach((innerInnerStack) => {
               const fullPath = `${innerBasePath}${path}`;
               const httpMethod = innerInnerStack.method.toUpperCase();
 
-              routes.push({ method: httpMethod, path: fullPath });
-            })
+              const tempRoute = { method: httpMethod, path: fullPath };
+              const existingRoute = tempRoutes.find(({ method, path }) => {
+                return method === tempRoute.method && path === tempRoute.path;
+              });
+
+              if (!existingRoute) {
+                tempRoutes.push(tempRoute);
+              }
+            });
+            routes.push(...tempRoutes);
           });
         }
       });
