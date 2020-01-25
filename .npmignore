@@ -5,3 +5,6 @@ coverage
 .env
 .DS_Store
 npm-debug.log
+examples
+images
+.eslintrc
