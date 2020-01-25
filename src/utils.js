@@ -30,7 +30,7 @@ const strigifiedRegex2 = regex => regex
  * @api private
  */
 exports.getRoutes = routerStack => {
-  const routes = [];
+  const routes = new Set();
 
   routerStack.forEach((stacks = null) => {
     if (stacks.route) {
@@ -40,10 +40,10 @@ exports.getRoutes = routerStack => {
         if (method) {
           const httpMethod = method.toUpperCase();
 
-          routes.push({
+          routes.add(JSON.stringify({
             method: httpMethod,
             path
-          });
+          }));
         }
       });
     }
@@ -60,7 +60,7 @@ exports.getRoutes = routerStack => {
             const httpMethod = method.toUpperCase();
             const fullPath = `${baseRoute}${path}`;
 
-            routes.push({ method: httpMethod, path: fullPath });
+            routes.add(JSON.stringify({ method: httpMethod, path: fullPath }));
           });
         } else {
           const innerBaseRoute = strigifiedRegex(stack.regexp);
@@ -68,29 +68,20 @@ exports.getRoutes = routerStack => {
 
           stack.handle.stack.forEach((innerStack) => {
             const { path } = innerStack.route;
-            const tempRoutes = [];
 
             // 😂 - innerInnerStack
             innerStack.route.stack.forEach((innerInnerStack) => {
               const fullPath = `${innerBasePath}${path}`;
               const httpMethod = innerInnerStack.method.toUpperCase();
 
-              const tempRoute = { method: httpMethod, path: fullPath };
-              const existingRoute = tempRoutes.find(({ method, path }) => {
-                return method === tempRoute.method && path === tempRoute.path;
-              });
-
-              if (!existingRoute) {
-                tempRoutes.push(tempRoute);
-              }
-            });
-            routes.push(...tempRoutes);
+              routes.add(JSON.stringify({ method: httpMethod, path: fullPath }));
+            })
           });
         }
       });
     }
   });
-  return routes;
+  return parseRouteSet(routes);
 };
 
 /**
@@ -145,3 +136,5 @@ exports.formatRoutes = routes => { // eslint-disable-line
  * @api private
  */
 exports.log = console.log; // eslint-disable-line no-console
+
+const parseRouteSet = routes => [...routes].map(JSON.parse)
