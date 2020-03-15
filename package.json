@@ -9,9 +9,9 @@
     "license": "MIT",
     "devDependencies": {
         "coveralls": "^3.0.7",
-        "eslint": "^6.6.0",
-        "eslint-config-proton": "^1.0.5",
-        "jest": "^24.9.0",
+        "eslint": "^6.8.0",
+        "eslint-config-proton": "^1.0.7",
+        "jest": "^25.1.0",
         "nodemon": "^1.19.4"
     },
     "dependencies": {
