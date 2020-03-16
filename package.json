@@ -1,6 +1,6 @@
 {
     "name": "koii",
-    "version": "2.0.4",
+    "version": "2.0.5",
     "description": "Simple middleware to display routes in an express application",
     "main": "src/index.js",
     "repository": "git@github.com:BolajiOlajide/koii.git",
@@ -39,5 +39,9 @@
         "routes",
         "startup",
         "blipp"
-    ]
+    ],
+    "resolutions": {
+        "acorn": ">=7.1.1",
+        "minimist": ">=1.2.2"
+    }
 }
