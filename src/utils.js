@@ -1,8 +1,6 @@
 const Table = require('easy-table');
 const chalk = require('chalk');
 
-
-
 const strigifiedRegex = regex => regex
   .toString()
   .replace(/fast_star: false, fast_slash: true/, '')
@@ -10,13 +8,13 @@ const strigifiedRegex = regex => regex
   .replace(/\\\\i/, '')
   .replace(/\\/g, '/');
 
-const strigifiedRegex2 = regex => regex
-  .toString()
-  .replace(/fast_star: false, fast_slash: true/, '')
-  .replace(/[?(?=\/|$)/^]/ig, '')
-  .replace(/\\\\i/, '')
-  .replace(/\\/g, '/')
-  .replace(/\\\\i/, '');
+// const strigifiedRegex2 = regex => regex
+//   .toString()
+//   .replace(/fast_star: false, fast_slash: true/, '')
+//   .replace(/[?(?=\/|$)/^]/ig, '')
+//   .replace(/\\\\i/, '')
+//   .replace(/\\/g, '/')
+//   .replace(/\\\\i/, '');
 
 /**
  * prepare application routes
@@ -72,12 +70,10 @@ exports.getRoutes = routerStack => {
 
               // 😂 - innerInnerStack
               innerStack.route.stack.forEach((innerInnerStack) => {
-                if (innerInnerStack.route) {
-                  const fullPath = `${innerBasePath}${path}`;
-                  const httpMethod = innerInnerStack.method.toUpperCase();
+                const fullPath = `${innerBasePath}${path}`;
+                const httpMethod = innerInnerStack.method.toUpperCase();
 
-                  routes.add(JSON.stringify({ method: httpMethod, path: fullPath }));
-                }
+                routes.add(JSON.stringify({ method: httpMethod, path: fullPath }));
               });
             }
           });
@@ -141,4 +137,4 @@ exports.formatRoutes = routes => { // eslint-disable-line
  */
 exports.log = console.log; // eslint-disable-line no-console
 
-const parseRouteSet = routes => [...routes].map(JSON.parse)
+const parseRouteSet = routes => [...routes].map(JSON.parse);
