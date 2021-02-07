@@ -67,15 +67,19 @@ exports.getRoutes = routerStack => {
           const innerBasePath = `${baseRoute}${innerBaseRoute}`;
 
           stack.handle.stack.forEach((innerStack) => {
-            const { path } = innerStack.route;
+            if (innerStack.route) {
+              const { path } = innerStack.route;
 
-            // 😂 - innerInnerStack
-            innerStack.route.stack.forEach((innerInnerStack) => {
-              const fullPath = `${innerBasePath}${path}`;
-              const httpMethod = innerInnerStack.method.toUpperCase();
+              // 😂 - innerInnerStack
+              innerStack.route.stack.forEach((innerInnerStack) => {
+                if (innerInnerStack.route) {
+                  const fullPath = `${innerBasePath}${path}`;
+                  const httpMethod = innerInnerStack.method.toUpperCase();
 
-              routes.add(JSON.stringify({ method: httpMethod, path: fullPath }));
-            })
+                  routes.add(JSON.stringify({ method: httpMethod, path: fullPath }));
+                }
+              });
+            }
           });
         }
       });
