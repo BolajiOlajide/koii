@@ -41,7 +41,6 @@
         "blipp"
     ],
     "resolutions": {
-        "acorn": ">=7.1.1",
-        "minimist": ">=1.2.2"
+        "ansi-regex": ">=5.0.1"
     }
 }
