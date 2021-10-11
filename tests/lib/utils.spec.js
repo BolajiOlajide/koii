@@ -82,9 +82,10 @@ describe('Utils', () => {
 
           expect(actual.path).toEqual(path);
           expect(actual.method).toEqual(method.toUpperCase());
-          done();
         }
       }
+
+      done();
     });
   });
 });
