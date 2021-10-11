@@ -1,5 +1,5 @@
 {
-  "extends": "proton",
+  "extends": "airbnb-base",
   "env": {
     "node": true
   },
