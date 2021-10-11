@@ -16,6 +16,18 @@ const strigifiedRegex = regex => regex
 //   .replace(/\\/g, '/')
 //   .replace(/\\\\i/, '');
 
+const ALL_METHODS = [
+  'GET',
+  'POST',
+  'PATCH',
+  'PUT',
+  'DELETE',
+  'HEAD',
+  'TRACE',
+  'OPTIONS',
+  'CONNECT'
+]
+
 /**
  * prepare application routes
  *
@@ -55,10 +67,14 @@ exports.getRoutes = routerStack => {
         if (stack.route) {
           stack.route.stack.forEach(({ method }) => {
             const { path } = stack.route;
-            const httpMethod = method.toUpperCase();
             const fullPath = `${baseRoute}${path}`;
 
-            routes.add(JSON.stringify({ method: httpMethod, path: fullPath }));
+            const methods = method ? [method] : ALL_METHODS;
+
+            methods.forEach((method) => {
+              const httpMethod = method.toUpperCase();
+              routes.add(JSON.stringify({ method: httpMethod, path: fullPath }));
+            });
           });
         } else {
           const innerBaseRoute = strigifiedRegex(stack.regexp);
