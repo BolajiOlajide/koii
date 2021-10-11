@@ -10,13 +10,13 @@
     "devDependencies": {
         "coveralls": "^3.1.1",
         "eslint": "^8.0.0",
-        "eslint-config-proton": "^1.0.7",
         "jest": "^27.2.5",
         "nodemon": "^2.0.13"
     },
     "dependencies": {
         "chalk": "^4.1.2",
         "easy-table": "^1.2.0",
+        "eslint-config-airbnb": "^18.2.1",
         "express": "^4.17.1"
     },
     "scripts": {
@@ -39,8 +39,5 @@
         "routes",
         "startup",
         "blipp"
-    ],
-    "resolutions": {
-        "ansi-regex": ">=5.0.1"
-    }
+    ]
 }
