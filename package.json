@@ -2,7 +2,7 @@
   "name": "koii",
   "version": "2.0.11",
   "description": "Simple middleware to display routes in an express application",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "repository": "git@github.com:BolajiOlajide/koii.git",
   "homepage": "https://github.com/BolajiOlajide/koii",
   "author": "Bolaji",
@@ -36,9 +36,10 @@
   "scripts": {
     "start:example": "ts-node-dev src/examples",
     "start:example2": "ts-node-dev src/examples/example2",
-    "test": "./tests/run_tests.sh",
+    "test": "jest",
     "ppublish": "npm publish",
-    "lint": "eslint . --ext .ts"
+    "lint": "eslint . --ext .ts",
+    "build": "tsc"
   },
   "jest": {
     "collectCoverage": true,
