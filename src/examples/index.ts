@@ -1,20 +1,23 @@
-const express = require('express');
-// const koii = require('../src');
-const v1Router = require('./routes/v1');
-const v2Router = require('./routes/v2');
-const stuffRouter = require('./routes/stuff');
+import express, { Request, Response } from 'express';
+
+import v1Router from './routes/v1';
+import v2Router from './routes/v2';
+import stuffRouter from './routes/stuff';
+import koii from '..';
 
 const app = express();
 const PORT = 3103;
 
-const responseHandler = ({ message }) => (req, res) => {
+const responseHandler = ({ message }: { message: string }) => (req: Request, res: Response) => {
+  let formattedMessage: string = '';
+
   if (req.params && req.params.name) {
-    message = `${message}${req.params.name}`;
+    formattedMessage = `${message}${req.params.name}`;
   }
 
   return res.send({
     status: 'success',
-    message
+    message: formattedMessage,
   });
 };
 
@@ -30,17 +33,9 @@ app.use('/api/v1', v1Router);
 app.use('/api/v2', v2Router);
 app.use('/test', stuffRouter);
 
-const koii = express();
-koii.on('mount', (p) => {
-  console.log(p._router);
-})
 app.use(koii);
-// console.log(app.settings)
 
-app.listen(PORT, (err) => {
-  if (err) {
-    throw new Error(err.message);
-  }
-
-  console.log('Application running on port ' + PORT); // eslint-disable-line
+app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log(`Application running on port ${PORT}`);
 });

@@ -34,7 +34,8 @@
         "ramda": "0.27.1"
     },
     "scripts": {
-        "start:example": "ts-node-dev examples",
+        "start:example": "ts-node-dev src/examples",
+        "start:example2": "ts-node-dev src/examples/example2",
         "test": "./tests/run_tests.sh",
         "ppublish": "npm publish",
         "lint": "eslint . --ext .ts"

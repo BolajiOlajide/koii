@@ -8,3 +8,4 @@ npm-debug.log
 examples
 images
 .eslintrc
+src/examples
