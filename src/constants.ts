@@ -4,5 +4,9 @@ export const ALL_METHODS: string[] = [
   'PATCH',
   'PUT',
   'DELETE',
-  'OPTIONS'
+  'OPTIONS',
 ];
+
+export enum COLORS {
+  CYAN = 'cyan',
+}

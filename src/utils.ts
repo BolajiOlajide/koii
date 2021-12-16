@@ -3,7 +3,7 @@ import R from 'ramda';
 import Table from 'easy-table';
 import chalk, { Color } from 'chalk';
 
-import { ALL_METHODS } from './constants';
+import { ALL_METHODS, COLORS } from './constants';
 
 const strigifiedRegex = (regex: RegExp) => regex
   .toString()
@@ -144,7 +144,7 @@ export const getRoutes = (router: Array<any>): string[] => {
 export const formatRoutes = (routes: any) => { // eslint-disable-line
   return Table.print(routes, ({ method, path }, cell) => {
     [[method, 'green', 'METHOD'], [path, 'white', 'PATH']].forEach(([attr, color, title]) => {
-      cell(style(title, 'cyan'), style(attr, color));
+      cell(style(title, COLORS.CYAN), style(attr, color));
     });
   });
 };

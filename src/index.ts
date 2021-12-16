@@ -7,6 +7,7 @@ import {
   getRoutes,
   formatRoutes,
 } from './utils';
+import { COLORS } from './constants';
 
 const koii = express();
 
@@ -23,7 +24,7 @@ const displayRoutes = (parent: Application) => {
   const routes = getRoutes(router.stack);
   const formattedRoutes = formatRoutes(routes);
 
-  log((style(`NODE_ENV= ${settings.env}`, 'cyan')));
+  log((style(`NODE_ENV= ${settings.env}`, COLORS.CYAN)));
   log(formattedRoutes);
 };
 
