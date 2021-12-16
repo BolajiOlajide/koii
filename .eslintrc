@@ -2,10 +2,19 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": [
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "jest"
   ],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
-  ]
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:jest/recommended"
+  ],
+  "env": {
+    "es6": true
+  }
 }

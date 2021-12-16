@@ -1,7 +1,5 @@
-'use strict';
-
 const express = require('express');
-const koii = require('../src');
+// const koii = require('../src');
 const v1Router = require('./routes/v1');
 const v2Router = require('./routes/v2');
 const stuffRouter = require('./routes/stuff');
@@ -32,7 +30,12 @@ app.use('/api/v1', v1Router);
 app.use('/api/v2', v2Router);
 app.use('/test', stuffRouter);
 
+const koii = express();
+koii.on('mount', (p) => {
+  console.log(p._router);
+})
 app.use(koii);
+// console.log(app.settings)
 
 app.listen(PORT, (err) => {
   if (err) {

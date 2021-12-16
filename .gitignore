@@ -6,3 +6,4 @@ npm-debug.log
 lib/
 package-lock.json
 .gitignore
+*.log
