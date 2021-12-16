@@ -1,5 +1,4 @@
 import { Application } from 'express';
-import R from 'ramda';
 import Table from 'easy-table';
 import chalk, { Color } from 'chalk';
 
@@ -35,7 +34,7 @@ export const validate = (app: Application): void => {
   }
 
   // eslint-disable-next-line no-underscore-dangle
-  if (R.not(app._router) || R.not(Array.isArray(app._router.stack))) {
+  if (!app._router || !Array.isArray(app._router.stack)) {
     const message = 'Cannot detect routes in the express application.';
     throw new Error(message);
   }
@@ -58,7 +57,9 @@ export const style = (text: string, color: Color): string => chalk[color](text);
  */
 export const { log } = console;
 
-const parseRouteSet = (routes: Set<string>): string[] => R.map(JSON.parse, Array.from(routes));
+const parseRouteSet = (routes: Set<string>): string[] => Array
+  .from<string>(routes)
+  .map((route) => JSON.parse(route));
 
 /**
  * prepare application routes
