@@ -23,10 +23,6 @@ jobs:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-      - name: Setup github registry authentication
-        run: |
-          npm config set //npm.pkg.github.com/:_authToken=$REGISTRY_TOKEN
-          npm config set @logicalley:registry https://npm.pkg.github.com
       - name: Install dependencies
         run: yarn
 
@@ -48,7 +44,7 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Run test for Annie API
+    - name: Run linter for koii
       run: yarn lint
 
   test:
@@ -69,5 +65,5 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Run test for Annie API
+    - name: Run test for koii
       run: yarn test
