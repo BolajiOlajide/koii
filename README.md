@@ -23,7 +23,9 @@ To use **Koii** simply add it as a middleware in your express application. To do
 This can be done with requireJS or the ES6 import statements as shown below:
 
 ```js
-const koii = require('koii');
+// we require this way because koii is currently exported as an esModule
+const koii = require('koii').default;
+const { default: koii } = require('koii');
 ```
 
 OR
