@@ -1,6 +1,6 @@
 import { Application } from 'express';
 import Table from 'easy-table';
-import chalk, { Color } from 'chalk';
+import chalk from 'chalk';
 
 import { ALL_METHODS, COLORS } from './constants';
 
@@ -48,7 +48,7 @@ export const validate = (app: Application): void => {
  * @returns {String}        decorated text with color
  * @api private
  */
-export const style = (text: string, color: Color): string => chalk[color](text);
+export const style = (text: string, color: COLORS): string => chalk[color](text);
 
 /**
  * log.
@@ -144,7 +144,7 @@ export const getRoutes = (router: Array<any>): string[] => {
  */
 export const formatRoutes = (routes: any) => { // eslint-disable-line
   return Table.print(routes, ({ method, path }, cell) => {
-    [[method, 'green', 'METHOD'], [path, 'white', 'PATH']].forEach(([attr, color, title]) => {
+    [[method, COLORS.GREEN, 'METHOD'], [path, 'white', 'PATH']].forEach(([attr, color, title]) => {
       cell(style(title, COLORS.CYAN), style(attr, color));
     });
   });
