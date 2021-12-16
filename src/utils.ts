@@ -2,7 +2,12 @@ import { Application } from 'express';
 import Table from 'easy-table';
 import chalk from 'chalk';
 
-import { ALL_METHODS, COLORS } from './constants';
+import { HTTPVERBS, COLORS } from './constants';
+
+export interface ApplicationRoute {
+  method: HTTPVERBS,
+  path: string;
+}
 
 const strigifiedRegex = (regex: RegExp) => regex
   .toString()
@@ -57,7 +62,7 @@ export const style = (text: string, color: COLORS): string => chalk[color](text)
  */
 export const { log } = console;
 
-const parseRouteSet = (routes: Set<string>): string[] => Array
+const parseRouteSet = <T>(routes: Set<string>): Array<T> => Array
   .from<string>(routes)
   .map((route) => JSON.parse(route));
 
@@ -72,7 +77,7 @@ const parseRouteSet = (routes: Set<string>): string[] => Array
  * @returns {Array}             array of routes
  * @api private
  */
-export const getRoutes = (router: Array<any>): string[] => {
+export const getRoutes = (router: Array<any>): ApplicationRoute[] => {
   const routes: Set<string> = new Set();
 
   router.forEach((stacks = null) => {
@@ -103,7 +108,7 @@ export const getRoutes = (router: Array<any>): string[] => {
             const { path } = stack.route;
             const fullPath = `${baseRoute}${path}`;
 
-            const methods = method ? [method] : ALL_METHODS;
+            const methods = method ? [method] : Object.values(HTTPVERBS);
 
             methods.forEach((innerMethod: string) => {
               const httpMethod = innerMethod.toUpperCase();
@@ -132,7 +137,7 @@ export const getRoutes = (router: Array<any>): string[] => {
     }
   });
 
-  return parseRouteSet(routes);
+  return parseRouteSet<ApplicationRoute>(routes);
 };
 
 /**
