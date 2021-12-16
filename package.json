@@ -5,7 +5,6 @@
   "main": "dist/index.js",
   "repository": "git@github.com:BolajiOlajide/koii.git",
   "homepage": "https://github.com/BolajiOlajide/koii",
-  "author": "Bolaji",
   "license": "MIT",
   "devDependencies": {
     "@types/express": "4.17.13",
@@ -26,6 +25,11 @@
     "ts-node": "10.4.0",
     "ts-node-dev": "1.1.8",
     "typescript": "4.5.4"
+  },
+  "author": {
+    "email": "25608335+BolajiOlajide@users.noreply.github.com",
+    "name": "Bolaji Olajide",
+    "url": "https://bolaji.de"
   },
   "dependencies": {
     "chalk": "5.0.0",
