@@ -13,7 +13,6 @@
     "@types/ramda": "0.27.60",
     "@typescript-eslint/eslint-plugin": "5.7.0",
     "@typescript-eslint/parser": "5.7.0",
-    "coveralls": "3.1.1",
     "eslint": "8.4.1",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-config-airbnb-typescript": "16.1.0",
@@ -44,14 +43,6 @@
     "ppublish": "npm publish",
     "lint": "eslint . --ext .ts",
     "build": "tsc"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "tests/**/*.{js}"
-    ],
-    "verbose": true,
-    "notify": false
   },
   "keywords": [
     "koi",
