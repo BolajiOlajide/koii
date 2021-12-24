@@ -8,3 +8,4 @@ package-lock.json
 .gitignore
 *.log
 dist
+*.tgz
