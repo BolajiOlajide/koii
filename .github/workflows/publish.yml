@@ -1,14 +1,17 @@
-name: Koii CI
+name: Koii CI (Release)
 
 on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'What kind of version bump do you want to release? Accepted versions: major | minor | patch'
+        required: true
 
 jobs:
   setup:
     runs-on: ubuntu-18.04
+
+    if: github.event.inputs.version == 'major' || github.event.inputs.version == 'minor' || github.event.inputs.version == 'patch'
 
     steps:
       - uses: actions/checkout@v2
@@ -26,30 +29,9 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-  lint:
-    needs: setup
-    runs-on: ubuntu-18.04
-
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 14.x
-
-    - name: Load node_modules
-      uses: actions/cache@v2
-      with:
-        path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-
-    - name: Run linter for koii
-      run: yarn lint
-
   test:
     needs: setup
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -65,24 +47,23 @@ jobs:
         path: '**/node_modules'
         key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
-    - name: Run test for koii
+    - name: Run tests
       run: yarn test
 
-  publish_pre_release:
-    name: "Publish new alpha version"
-    needs: [test, lint]
+  publish:
+    name: "Publish new version"
+    needs: test
     runs-on: ubuntu-latest
 
-    # only want to run this job when there's a pull request and never when there's a push to the main branch
-    if: github.repository_owner == 'BolajiOlajide' && github.event_name != 'push'
+    if: github.repository_owner == 'BolajiOlajide'
 
     steps:
     - uses: actions/checkout@v2
 
-    - name: Use Node.js 16.x
+    - name: Use Node.js 14.x
       uses: actions/setup-node@v2
       with:
-        node-version: 16.x
+        node-version: 14.x
 
     - name: Load node_modules
       uses: actions/cache@v2
@@ -100,8 +81,8 @@ jobs:
         git config user.name "BolajiOlajide"
         git config user.email "25608335+BolajiOlajide@users.noreply.github.com"
 
-    - name: Bump Prerelease version
-      run: yarn version --prerelease --preid alpha-${GITHUB_RUN_ID}
+    - name: Bump to next ${{github.event.inputs.version}} version
+      run: yarn version --${{github.event.inputs.version}}
 
     - name: get-npm-version
       id: package-version
@@ -112,8 +93,13 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
-    - name: Comment PR
-      uses: thollander/actions-comment-pull-request@v1
+    - name: Update changelog
+      uses: thomaseizinger/keep-a-changelog-new-release@1.1.0
       with:
-        message: 'Install with: `yarn add koii@${{steps.package-version.outputs.current-version}}`'
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        version: ${{steps.package-version.outputs.current-version}}
+
+    - name: Push git tag and updated package.json
+      run: |
+        git push origin v${{steps.package-version.outputs.current-version}}
+        git commit --amend --no-edit
+        git push origin main
