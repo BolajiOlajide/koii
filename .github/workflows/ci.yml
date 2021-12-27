@@ -2,12 +2,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
-
-env:
-  NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+    branches: [main]
 
 jobs:
   setup:
@@ -113,7 +110,7 @@ jobs:
     - name: Publish to NPMJS with yarn
       run: yarn publish --access public
       env:
-        NODE_AUTH_TOKEN: NPM_AUTH_TOKEN
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@v1
