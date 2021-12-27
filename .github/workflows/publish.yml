@@ -98,6 +98,5 @@ jobs:
 
     - name: Push git tag and updated package.json
       run: |
-        git commit --amend --no-edit
         git push origin v${{steps.package-version.outputs.current-version}}
         git push origin main
