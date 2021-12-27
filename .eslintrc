@@ -6,7 +6,6 @@
     "jest"
   ],
   "parserOptions": {
-    "project": "./tsconfig.json",
     "sourceType": "module"
   },
   "extends": [
