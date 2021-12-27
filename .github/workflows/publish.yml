@@ -96,11 +96,6 @@ jobs:
       env:
         NODE_AUTH_TOKEN: NPM_AUTH_TOKEN
 
-    - name: Update changelog
-      uses: thomaseizinger/keep-a-changelog-new-release@1.1.0
-      with:
-        version: ${{steps.package-version.outputs.current-version}}
-
     - name: Push git tag and updated package.json
       run: |
         git commit --amend --no-edit
