@@ -24,8 +24,7 @@ This can be done with requireJS or the ES6 import statements as shown below:
 
 ```js
 // we require this way because koii is currently exported as an esModule
-const koii = require('koii').default;
-const { default: koii } = require('koii');
+const koii = require('koii');
 ```
 
 OR
