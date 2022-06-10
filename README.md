@@ -45,3 +45,4 @@ Ensure you do this after all your route definitions, if not the middleware won't
 Read more about Koii [here](https://medium.com/backticks-tildes/introducing-koii-d556657723c)
 
 Inspired by [@danielb2](https://github.com/danielb2)'s [Blipp plugin](https://www.npmjs.com/package/blipp) for HapiJS
+Hello World
