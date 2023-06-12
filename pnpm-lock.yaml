@@ -13,8 +13,8 @@ specifiers:
   '@types/node': 17.0.0
   '@typescript-eslint/eslint-plugin': 5.7.0
   '@typescript-eslint/parser': 5.7.0
-  chalk: ^5.2.0
-  easy-table: ^1.2.0
+  chalk: 5.2.0
+  easy-table: 1.2.0
   eslint: 8.4.1
   eslint-config-airbnb-base: 15.0.0
   eslint-config-airbnb-typescript: 16.1.0

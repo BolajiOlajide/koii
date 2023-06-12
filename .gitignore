@@ -9,3 +9,4 @@ package-lock.json
 *.log
 dist
 *.tgz
+examples
