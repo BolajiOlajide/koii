@@ -1,6 +1,6 @@
 {
   "name": "koii",
-  "version": "3.2.0",
+  "version": "3.1.0",
   "description": "Simple middleware to display routes in an express application",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -39,7 +39,7 @@
     "url": "https://bolaji.de"
   },
   "dependencies": {
-    "chalk": "4.1.2",
+    "chalk": "5.2.0",
     "easy-table": "1.2.0"
   },
   "peerDependencies": {
@@ -47,9 +47,9 @@
   },
   "scripts": {
     "cleanup": "rm -rf dist",
-    "build": "yarn build:declaration && yarn build:rollup",
+    "build": "pnpm run build:declaration && pnpm run build:rollup",
     "build:declaration": "tsc",
-    "build:rollup": "rollup -c rollup.config.ts",
+    "build:rollup": "rollup -c rollup.config.mjs",
     "lint": "eslint . --ext .ts",
     "start:example": "ts-node-dev src/examples",
     "start:example2": "ts-node-dev src/examples/example2",
