@@ -1,6 +1,6 @@
 {
   "name": "koii",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "Simple middleware to display routes in an express application",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
