@@ -7,11 +7,8 @@ export default {
   clearMocks: true,
   resetMocks: true,
   transform: {
-    '^.+\\.(ts|tsx)?$': 'ts-jest',
-  },
-  globals: {
-    'ts-jest': {
-      babelConfig: true,
-    },
-  },
+    '^.+\\.(ts|tsx)?$': ['ts-jest', {
+      babelConfig: true
+    }],
+  }
 };
