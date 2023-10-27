@@ -11,14 +11,14 @@ const extensions = ['.ts'];
 const config = {
   input: 'src/index.ts',
   plugins: [
-    // nodeResolve({ extensions, browser: false }),
+    nodeResolve({ extensions, browser: false }),
     typescript(),
-    // commonjs(),
-    // babel({
-    //   extensions,
-    //   babelHelpers: 'bundled',
-    //   exclude: 'node_modules/**'
-    // }),
+    commonjs(),
+    babel({
+      extensions,
+      babelHelpers: 'bundled',
+      exclude: 'node_modules/**'
+    }),
     terser()
   ],
   external: ['express', 'ansi-regex', 'easy-table', 'chalk'],
