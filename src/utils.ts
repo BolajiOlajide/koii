@@ -1,4 +1,4 @@
-import { Application } from 'express';
+import type { Application } from 'express';
 import Table from 'easy-table';
 import chalk from 'chalk';
 
@@ -27,8 +27,8 @@ const strigifiedRegex = (regex: RegExp) => regex
 /**
  * validate parent application instance
  *
- * @param {Object}      app    express application
- * @returns {Boolean}          boolean to show if app is a valid express app
+ * @param     {Object}      app     express application
+ * @returns   {Boolean}             boolean to show if app is a valid express app
  * @exception {Object}
  * @api private
  */
