@@ -11,7 +11,7 @@ const extensions = ['.ts'];
 const config = {
   input: 'src/index.ts',
   plugins: [
-    nodeResolve({ extensions }),
+    nodeResolve({ extensions, browser: false }),
     commonjs(),
     babel({
       extensions,
