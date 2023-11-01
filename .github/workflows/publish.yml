@@ -9,46 +9,56 @@ on:
 
 jobs:
   setup:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     if: github.event.inputs.version == 'major' || github.event.inputs.version == 'minor' || github.event.inputs.version == 'patch'
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js 14.x
-        uses: actions/setup-node@v2
+      - uses: pnpm/action-setup@v2
         with:
-          node-version: 14.x
+          version: 8
 
-      - uses: actions/cache@v2
+      - name: Use Node.js 18.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'pnpm'
+
+      - uses: actions/cache@v3
         with:
           path: "**/node_modules"
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       - name: Install dependencies
-        run: yarn
+        run: pnpm install --frozen-lockfile
 
   test:
     needs: setup
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
+    - uses: pnpm/action-setup@v2
       with:
-        node-version: 14.x
+        version: 8
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        cache: 'pnpm'
 
     - name: Load node_modules
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
-    - name: Run tests
-      run: yarn test
+    - name: Run test for koii
+      run: pnpm test
 
   publish:
     name: "Publish new version"
@@ -61,21 +71,26 @@ jobs:
       NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v2
+    - uses: pnpm/action-setup@v2
       with:
-        node-version: 14.x
+        version: 8
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        cache: 'pnpm'
 
     - name: Load node_modules
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: '**/node_modules'
-        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
 
     - name: Build
-      run: yarn build
+      run: pnpm build
 
     # In order to make a commit, we need to initialize a user.
     # You may choose to write something less generic here if you want, it doesn't matter functionality wise.
@@ -85,14 +100,14 @@ jobs:
         git config user.email "25608335+BolajiOlajide@users.noreply.github.com"
 
     - name: Bump to next ${{github.event.inputs.version}} version
-      run: yarn version --${{github.event.inputs.version}}
+      run: pnpm version --${{github.event.inputs.version}}
 
     - name: get-npm-version
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
 
     - name: Publish to NPMJS with yarn
-      run: yarn publish --access public
+      run: pnpm publish --access public
       env:
         NODE_AUTH_TOKEN: NPM_AUTH_TOKEN
 
