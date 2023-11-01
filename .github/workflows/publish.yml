@@ -101,7 +101,7 @@ jobs:
 
     - name: get-npm-version
       id: package-version
-      uses: martinbeentjes/npm-get-version-action@1.3.1
+      uses: martinbeentjes/npm-get-version-action@v1.3.1
 
     - name: Set publishing config
       run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
