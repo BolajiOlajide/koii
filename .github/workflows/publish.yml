@@ -1,4 +1,4 @@
-name: Koii CI (Release)
+name: Koii Release
 
 on:
   workflow_dispatch:
@@ -67,9 +67,6 @@ jobs:
 
     if: github.repository_owner == 'BolajiOlajide'
 
-    env:
-      NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-
     steps:
     - uses: actions/checkout@v4
 
@@ -104,12 +101,15 @@ jobs:
 
     - name: get-npm-version
       id: package-version
-      uses: martinbeentjes/npm-get-version-action@master
+      uses: martinbeentjes/npm-get-version-action@1.3.1
+
+    - name: Set publishing config
+      run: pnpm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
 
     - name: Publish to NPMJS
       run: pnpm publish --access public
-      env:
-        NODE_AUTH_TOKEN: NPM_AUTH_TOKEN
 
     - name: Push git tag and updated package.json
       run: |
