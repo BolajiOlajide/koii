@@ -113,5 +113,6 @@ jobs:
 
     - name: Push git tag and updated package.json
       run: |
-        git push origin v${{steps.package-version.outputs.current-version}}
+        git tag v${{steps.package-version.outputs.current-version}}
+        git push --atomic origin main v${{steps.package-version.outputs.current-version}}
         git push origin main
