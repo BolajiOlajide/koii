@@ -106,7 +106,7 @@ jobs:
       id: package-version
       uses: martinbeentjes/npm-get-version-action@master
 
-    - name: Publish to NPMJS with yarn
+    - name: Publish to NPMJS
       run: pnpm publish --access public
       env:
         NODE_AUTH_TOKEN: NPM_AUTH_TOKEN
