@@ -3,3 +3,4 @@ dist
 __tests__
 jest.config.ts
 rollup.config.ts
+src/examples/**/*
